@@ -5,16 +5,14 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserService
-import org.springframework.security.oauth2.core.user.OAuth2User
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler
 
 @Configuration
 @EnableWebSecurity
 class SecurityConfig(
-    private val oAuth2UserService: OAuth2UserService<OAuth2UserRequest, OAuth2User>,
+    private val oAuth2UserService: OidcUserService,
     private val oAuth2SuccessHandler: AuthenticationSuccessHandler,
 ) {
 
@@ -31,7 +29,7 @@ class SecurityConfig(
             }
             .oauth2Login { oauth2 ->
                 oauth2.userInfoEndpoint { userInfo ->
-                    userInfo.userService(oAuth2UserService)
+                    userInfo.oidcUserService(oAuth2UserService)
                 }
                 oauth2.successHandler(oAuth2SuccessHandler)
             }

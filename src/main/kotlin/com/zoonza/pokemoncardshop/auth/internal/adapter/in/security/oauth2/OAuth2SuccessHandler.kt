@@ -27,7 +27,7 @@ class OAuth2SuccessHandler(
         response: HttpServletResponse,
         authentication: Authentication,
     ) {
-        val principal = authentication.principal as CustomOAuth2User
+        val principal = authentication.principal as CustomOidcUser
         val tokenResult = issueTokenUseCase.issue(IssueTokenCommand(principal.memberId))
 
         refreshTokenCookieWriter.set(response, tokenResult.refreshToken)
