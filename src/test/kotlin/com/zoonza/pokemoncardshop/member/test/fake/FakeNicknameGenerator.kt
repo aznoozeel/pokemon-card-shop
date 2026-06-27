@@ -1,7 +1,7 @@
 package com.zoonza.pokemoncardshop.member.test.fake
 
-import com.zoonza.pokemoncardshop.member.internal.domain.Nickname
 import com.zoonza.pokemoncardshop.member.internal.application.service.NicknameGenerator
+import com.zoonza.pokemoncardshop.member.internal.domain.Nickname
 
 class FakeNicknameGenerator : NicknameGenerator {
     private val nicknames = ArrayDeque<Nickname>()

@@ -4,7 +4,10 @@ import com.zoonza.pokemoncardshop.common.error.DomainException
 import com.zoonza.pokemoncardshop.member.api.MemberRegistrationApi
 import com.zoonza.pokemoncardshop.member.api.dto.command.RegisterMemberCommand
 import com.zoonza.pokemoncardshop.member.api.dto.result.RegisterMemberResult
-import com.zoonza.pokemoncardshop.member.internal.domain.*
+import com.zoonza.pokemoncardshop.member.internal.domain.Member
+import com.zoonza.pokemoncardshop.member.internal.domain.MemberErrorCode
+import com.zoonza.pokemoncardshop.member.internal.domain.MemberRepository
+import com.zoonza.pokemoncardshop.member.internal.domain.Nickname
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
