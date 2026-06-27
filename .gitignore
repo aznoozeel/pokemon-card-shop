@@ -116,7 +116,7 @@ gradle-app.setting
 *.hprof
 
 ### Project ###
-CLAUDE.md
+AGENTS.md
 application-local.yml
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,intellij+iml,java,gradle
