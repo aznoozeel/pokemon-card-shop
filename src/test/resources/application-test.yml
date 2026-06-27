@@ -15,5 +15,11 @@ spring:
 
 jwt:
   secret-key: test-secret-key-for-hs256-token-signing
-  access-expiration-ms: 1800000
-  refresh-expiration-ms: 604800000
+  access-ttl: 30m
+
+refresh-token:
+  ttl: 7d
+
+app:
+  oauth2:
+    success-redirect-url: http://localhost:3000/auth/success
