@@ -11,6 +11,6 @@ enum class OAuth2Provider(
     companion object {
         fun from(registrationId: String): OAuth2Provider =
             entries.find { it.registrationId == registrationId }
-                ?: throw DomainException(SocialAccountErrorCode.UNSUPPORTED_OAUTH_PROVIDER)
+                ?: throw DomainException(SocialLinkErrorCode.UNSUPPORTED_OAUTH_PROVIDER)
     }
 }

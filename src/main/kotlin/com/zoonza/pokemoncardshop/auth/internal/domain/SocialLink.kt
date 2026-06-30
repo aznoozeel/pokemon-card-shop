@@ -7,16 +7,16 @@ import java.time.LocalDateTime
 @Table(
     uniqueConstraints = [
         UniqueConstraint(
-            name = "uk_social_account_provider_social_id",
+            name = "uk_social_link_provider_social_id",
             columnNames = ["provider", "social_id"]
         ),
         UniqueConstraint(
-            name = "uk_social_account_member_id_provider",
+            name = "uk_social_link_member_id_provider",
             columnNames = ["member_id", "provider"]
         )
     ]
 )
-class SocialAccount private constructor(
+class SocialLink private constructor(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L,
@@ -47,8 +47,8 @@ class SocialAccount private constructor(
             provider: OAuth2Provider,
             socialId: String,
             createdAt: LocalDateTime,
-        ): SocialAccount {
-            return SocialAccount(
+        ): SocialLink {
+            return SocialLink(
                 memberId = memberId,
                 provider = provider,
                 socialId = socialId,

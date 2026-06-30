@@ -3,7 +3,7 @@ package com.zoonza.pokemoncardshop.auth.internal.domain
 import com.zoonza.pokemoncardshop.common.error.ErrorCode
 import com.zoonza.pokemoncardshop.common.error.ErrorStatus
 
-enum class SocialAccountErrorCode(
+enum class SocialLinkErrorCode(
     override val status: ErrorStatus,
     override val message: String,
 ) : ErrorCode {

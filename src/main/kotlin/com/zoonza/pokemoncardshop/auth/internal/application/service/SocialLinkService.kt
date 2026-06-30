@@ -4,8 +4,8 @@ import com.zoonza.pokemoncardshop.auth.internal.application.dto.command.SocialLo
 import com.zoonza.pokemoncardshop.auth.internal.application.dto.result.SocialLoginResult
 import com.zoonza.pokemoncardshop.auth.internal.application.port.`in`.SocialLoginUseCase
 import com.zoonza.pokemoncardshop.auth.internal.domain.OAuth2Provider
-import com.zoonza.pokemoncardshop.auth.internal.domain.SocialAccount
-import com.zoonza.pokemoncardshop.auth.internal.domain.SocialAccountRepository
+import com.zoonza.pokemoncardshop.auth.internal.domain.SocialLink
+import com.zoonza.pokemoncardshop.auth.internal.domain.SocialLinkRepository
 import com.zoonza.pokemoncardshop.member.api.MemberRegistrationApi
 import com.zoonza.pokemoncardshop.member.api.dto.command.RegisterMemberCommand
 import org.springframework.stereotype.Service
@@ -13,9 +13,9 @@ import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
 @Service
-class SocialAccountService(
+class SocialLinkService(
     private val memberRegistrationApi: MemberRegistrationApi,
-    private val socialAccountRepository: SocialAccountRepository
+    private val socialLinkRepository: SocialLinkRepository
 ) : SocialLoginUseCase {
 
     @Transactional
@@ -37,8 +37,8 @@ class SocialAccountService(
         provider: OAuth2Provider,
         socialId: String,
         loggedInAt: LocalDateTime
-    ): SocialAccount {
-        return socialAccountRepository.findByProviderAndSocialId(
+    ): SocialLink {
+        return socialLinkRepository.findByProviderAndSocialId(
             provider = provider,
             socialId = socialId
         ) ?: registerSocialAccount(
@@ -52,18 +52,18 @@ class SocialAccountService(
         provider: OAuth2Provider,
         socialId: String,
         registeredAt: LocalDateTime
-    ): SocialAccount {
+    ): SocialLink {
         val result = memberRegistrationApi.register(
             RegisterMemberCommand(registeredAt)
         )
 
-        val socialAccount = SocialAccount.register(
+        val socialLink = SocialLink.register(
             memberId = result.memberId,
             provider = provider,
             socialId = socialId,
             createdAt = registeredAt
         )
 
-        return socialAccountRepository.save(socialAccount)
+        return socialLinkRepository.save(socialLink)
     }
 }
